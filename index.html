@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Hello MUI</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!--标准mui.css-->
+	<link rel="stylesheet" href="css/mui.css">
+	<!--App自定义的css-->
+	<link rel="stylesheet" type="text/css" href="css/app.css"/>
+	<link rel="stylesheet" type="text/css" href="css/icons-extra.css"/>
+</head>
+
+<body>
+	<div class="mui-content">
+		<div id="slider" class="mui-slider mui-fullscreen">		
+			<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				<div id="top_tab">
+					<a class="mui-control-item mui-active" href="#IndexTab_1" data="1">
+						财经
+					</a>
+					<a class="mui-control-item" href="#IndexTab_2" data="2">
+						趋势
+					</a>
+				</div>
+			</div>			
+			<div class="mui-slider-group">				
+				<div id="IndexTab_1" class="mui-slider-item mui-control-content mui-active">
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<ul class="mui-table-view nav_ahref_view" id="Tab_U1" style="padding-bottom:40px;;"></ul>
+						</div>
+					</div>
+				</div>
+				<div id="IndexTab_2" class="mui-slider-item mui-control-content">
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<ul class="mui-table-view nav_ahref_view" id="Tab_U2" style="padding-bottom:40px;;"></ul>
+						</div>
+					</div>
+				</div>				
+			</div>			
+		</div>
+	</div>
+	<div class="botfresh" id="loadMore">
+		<span class="mui-icon mui-icon-reload"></span>
+	</div>
+	<nav class="mui-bar mui-bar-tab nav_ahref_view">
+		<selection class="mui-tab-item mui-active" href="index.html">
+			<span class="mui-icon mui-icon-home"></span>
+			<span class="mui-tab-label">首页</span>
+		</selection>
+		<selection class="mui-tab-item" href="list.html">
+			<span class="mui-icon-extra mui-icon-extra-xiaoshuo"></span>				
+			<span class="mui-tab-label">无双榜</span>
+		</selection>
+		<selection class="mui-tab-item" href="home.html">
+			<span class="mui-icon mui-icon-contact"></span>
+			<span class="mui-tab-label">我的</span>
+		</selection>
+	</nav>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/mui.jsonp.js"></script>	
+<script src="js/mui.pullToRefresh.js"></script>
+<script src="js/mui.pullToRefresh.material.js"></script>
+<script>
+mui.init();
+swipeBack:true; //启用右滑关闭功能
+//下拉刷新
+(function($) {
+	//阻尼系数
+	var deceleration = mui.os.ios?0.003:0.0009;
+	$('.mui-scroll-wrapper').scroll({
+		bounce: false,
+		indicators: true, //是否显示滚动条
+		deceleration:deceleration
+	});
+	$.ready(function() {		
+		//加载更多
+		document.getElementById("loadMore").addEventListener('tap', function() {
+			loadNew(3);
+			document.getElementById("loadMore").innerHTML = '<span class="mui-spinner"></span>';
+		});
+		//获取最新资讯
+		var loadNew = function(count) {
+			var toptab = document.getElementById("top_tab").children;
+			var category = 1;
+			for(var i=0;i<toptab.length;i++){
+				if(toptab[i].getAttribute("class").indexOf("mui-active") > -1){
+					category = 	toptab[i].getAttribute("data");
+				}
+			}
+			var ul = document.getElementById('Tab_U'+category);
+			mui.getJSONP('http://192.168.1.6/',{"category":category},function(jsonData){
+				if(jsonData.code == 0){
+					mui.localJDB.set("IndexStorage_"+category,JSON.stringify(jsonData.data));
+					var fragment = document.createDocumentFragment();
+					var li;
+					var list = jsonData.data;
+					for (var i = 0; i < list.length; i++) {
+						li = document.createElement('li');
+						li.className = 'mui-table-view-cell mui-media';
+						li.innerHTML = html_li(list[i]);
+						fragment.appendChild(li);
+					}
+					if(!ul.hasChildNodes()){
+						ul.append(fragment);
+					}else{
+						ul.insertBefore(fragment,ul.firstChild);
+					}					
+				}
+				document.getElementById("loadMore").innerHTML = '<span class="mui-icon mui-icon-reload"></span>';
+			});				
+		};
+	});
+})(mui);
+
+viewBind();
+//View切换绑定
+function viewBind(){
+	mui('.nav_ahref_view').on('tap', 'selection', function() {
+		var href = this.getAttribute('href');	
+		//非plus环境，直接走href跳转
+		if(!mui.os.plus) {
+			location.href = href;
+			return;
+		}
+		var id = this.getAttribute("data-wid");
+		if(!id) {
+			id = href;
+		}
+		if(href && ~href.indexOf('.html')) {
+			//打开窗口的相关参数
+			var options = {
+				styles:{
+					popGesture: "close"
+				},
+				extras:{
+					title:"页面间传值",
+					content:"传递的内容,MUI还是可以的么。"
+				}
+			};
+			//非原生导航，需要设置顶部状态栏占位
+			options.styles.statusbar = {
+				background: "#f7f7f7"
+			}
+			//打开新窗口
+			mui.openWindow(href,id,options);
+		}
+	});
+}		
+viewContentInit();
+//初始化数据
+function viewContentInit(){
+	for(var loop=1;loop<=2;loop++){
+		var category = loop;
+		var locont = mui.localJDB.get("IndexStorage_"+category);
+		if(locont){
+			var ul = document.getElementById('Tab_U'+category);
+			var list = JSON.parse(locont);
+			var fragment = document.createDocumentFragment();
+			var li;
+			for (var i = 0; i < list.length; i++) {
+				li = document.createElement('li');
+				li.className = 'mui-table-view-cell mui-media';
+				li.innerHTML = html_li(list[i]);
+				fragment.appendChild(li);
+			}
+			if(!ul.hasChildNodes()){
+				ul.append(fragment);
+			}else{
+				ul.insertBefore(fragment,ul.firstChild);
+			}
+		}
+	}
+}
+function html_li(news){			
+	var li_code = '<selection href="detail.html">';
+		li_code += '<div class="mui-card-content">';
+		if(news.image.length > 1){
+			li_code += '<div class="hui-flex">';
+			for(var i in news.image){
+				li_code += '<img class="hui-flex-full" src="'+news.image[i]+'">';
+			}					
+			li_code += '</div>';
+		}else if(news.image.length == 1){
+			li_code += '<div class="mui-card-media"><img style="height:40vw;width:100%;" src="'+news.image[0]+'"></div>';
+		}
+		li_code += '<p class="mg-bt-2"><h4>'+news.title+'</h4>';
+		li_code += '<span class="mui-badge"> 财经榜第 ';
+		li_code += '<span class="mui-badge mui-badge-royal">'+news.rank+'</span>';
+		li_code += '</span>	';
+		li_code += '<span class="mui-badge mui-badge-royal mui-badge-inverted">'+news.author+'</span>on '+news.time;
+		li_code += '</p>';
+		li_code += '<p style="color: #333;">'+news.content.substr(0,70)+'...</p>';
+		li_code += '</div>';
+		li_code += '</selection>';
+	return li_code;
+}
+</script>
+</html>

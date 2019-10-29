@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="css/mui.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="css/app.css"/>
+		<link rel="stylesheet" type="text/css" href="css/icons-extra.css" />
+		<style>
+			.mui-pagination > li > a .prog_active{
+				background-color: #4cd964;
+			}	
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div>
+						<a class="mui-control-item mui-active" href="#item-1-list">
+							财经榜
+						</a>
+						<a class="mui-control-item" href="#item-2-list">
+							预测榜
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-group">
+					<div id="item-1-list" class="mui-slider-item mui-control-content mui-active">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-card" style="padding-bottom:20px;border-bottom: lightgrey 1px dashed;">
+									<div class="mui-card-header">
+										今日题目
+										<span class="mui-pull-right" style="vertical-align: middle;">  
+											<span class="mui-btn" id="userSel">请选择</span>
+											<span class="mui-btn mui-btn-primary">确认</span>
+										</span>
+									</div>
+									<div class="mui-card-content">
+										<div class="mui-card-content-inner">
+											明日上证指数是涨还是跌(百分比%)？
+											<p>猜对可获得积分2分</p>
+										</div>
+										<div id="percent" class="mui-text-center">
+											<p class="mui-progressbar mui-progressbar-in" data-progress="50"><span style="transform: translate3d(-90%, 0px, 0px);"></span></p>
+											<ul class="mui-pagination">
+												<li data="1"><a href="javascript:;" data-progress="10">[-3]</a></li>
+												<li data="2"><a href="javascript:;" data-progress="30">[-1,-3]</a></li>
+												<li data="3"><a href="javascript:;" data-progress="45">(0,-1]</a></li>
+												<li data="4"><a href="javascript:;" data-progress="55">[0,1]</a></li>
+												<li data="5"><a href="javascript:;" data-progress="70">[1,3]</a></li>
+												<li data="6"><a href="javascript:;" data-progress="100">[3]</a></li>
+											</ul>																		
+										</div>
+										
+									</div>
+								</div>
+							    <ul class="mui-table-view">
+									<li class="mui-table-view-cell mui-media">
+										<a href="javascript:;">
+											<img class="mui-media-object mui-pull-left" src="images/shuijiao.jpg">
+											<span class="mui-badge mui-badge-primary mui-pull-right">1</span>
+											<div class="mui-media-body">												
+												幸福<span style="margin-left:30px;">封号：阳山</span>
+												<p class='mui-ellipsis'>积分:100</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="javascript:;">
+											<img class="mui-media-object mui-pull-left" src="images/muwu.jpg">
+											<span class="mui-badge mui-badge-primary mui-pull-right">2</span>
+											<div class="mui-media-body">
+												木屋
+												<p class='mui-ellipsis'>积分:95</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="javascript:;">
+											<img class="mui-media-object mui-pull-left" src="images/cbd.jpg">
+											<span class="mui-badge mui-badge-primary mui-pull-right">3</span>
+											<div class="mui-media-body">
+												CBD
+												<p class='mui-ellipsis'>积分:90</p>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- end -->	
+					<div id="item-2-list" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-card" style="padding-bottom:20px;border-bottom: lightgrey 1px dashed;">
+									<div class="mui-card-header">
+										今日题目
+										<span class="mui-pull-right" style="vertical-align: middle;">  
+											<span class="mui-btn" id="userSel">请回答</span>
+											<span class="mui-btn mui-btn-primary">确认</span>
+										</span>
+									</div>
+									<div class="mui-card-content">
+										<div class="mui-card-content-inner">
+											下一期双色球蓝球号码是？
+											<p>猜对可获得积分2分</p>
+										</div>
+										<div id="percent" class="mui-text-center">
+										    <input type="text" placeholder="请输入">																		
+										</div>										
+									</div>
+								</div>
+							    <ul class="mui-table-view">
+									<li class="mui-table-view-cell mui-media">
+										<a href="javascript:;">
+											<img class="mui-media-object mui-pull-left" src="images/shuijiao.jpg">
+											<span class="mui-badge mui-badge-primary mui-pull-right">1</span>
+											<div class="mui-media-body">												
+												幸福<span style="margin-left:30px;">封号：阳山</span>
+												<p class='mui-ellipsis'>积分:100</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="javascript:;">
+											<img class="mui-media-object mui-pull-left" src="images/muwu.jpg">
+											<span class="mui-badge mui-badge-primary mui-pull-right">2</span>
+											<div class="mui-media-body">
+												木屋
+												<p class='mui-ellipsis'>积分:95</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="javascript:;">
+											<img class="mui-media-object mui-pull-left" src="images/cbd.jpg">
+											<span class="mui-badge mui-badge-primary mui-pull-right">3</span>
+											<div class="mui-media-body">
+												CBD
+												<p class='mui-ellipsis'>积分:90</p>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				    <!-- end -->					
+				</div>
+			</div>
+		</div>
+		<nav class="mui-bar mui-bar-tab nav_ahref_view">
+			<selection class="mui-tab-item" href="index.html">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</selection>
+			<selection class="mui-tab-item mui-active" href="list.html">
+				<span class="mui-icon-extra mui-icon-extra-xiaoshuo"></span>				
+				<span class="mui-tab-label">无双榜</span>
+			</selection>
+			<selection class="mui-tab-item" href="home.html">
+				<span class="mui-icon mui-icon-contact"></span>
+				<span class="mui-tab-label">我的</span>
+			</selection>
+		</nav>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script src="js/mui.pullToRefresh.js"></script>
+	<script src="js/mui.pullToRefresh.material.js"></script>
+	<script>
+		mui.init();
+		swipeBack:true; //启用右滑关闭功能
+
+		//下拉刷新
+        (function($) {
+			//阻尼系数
+			var deceleration = mui.os.ios?0.003:0.0009;
+			$('.mui-scroll-wrapper').scroll({
+				bounce: false,
+				indicators: true, //是否显示滚动条
+				deceleration:deceleration
+			});
+			$.ready(function() {
+				//循环初始化所有下拉刷新，上拉加载。
+				$.each(document.querySelectorAll('.mui-content .mui-scroll'), function(index, pullRefreshEl) {
+					$(pullRefreshEl).pullToRefresh({
+						down: {
+							callback: function() {
+								var self = this;
+								setTimeout(function() {
+									var ul = self.element.querySelector('.mui-table-view');
+									//ul.insertBefore(createFragment(ul, index, 3, true), ul.firstChild);
+									self.endPullDownToRefresh();
+								}, 10);
+							}
+						},
+						up: {
+							callback: function() {
+								var self = this;
+								setTimeout(function() {
+									var ul = self.element.querySelector('.mui-table-view');
+									ul.appendChild(createFragment(ul, index, 3));
+									self.endPullUpToRefresh();
+								}, 1000);
+							}
+						}
+					});
+				});
+				var createFragment = function(ul, index, count, reverse) {
+					var length = ul.querySelectorAll('li').length;
+					var fragment = document.createDocumentFragment();
+					var li;
+					for (var i = 0; i < count; i++) {
+						li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = '第' + (index + 1) + '个选项卡子项-' + (length + (reverse ? (count - i) : (i + 1)));
+						fragment.appendChild(li);
+					}
+					return fragment;
+				};
+			});
+		})(mui);
+		
+		//View切换绑定
+		mui('.nav_ahref_view').on('tap', 'selection', function() {
+			var href = this.getAttribute('href');	
+			//非plus环境，直接走href跳转
+			if(!mui.os.plus) {
+				location.href = href;
+				return;
+			}
+			var id = this.getAttribute("data-wid");
+			if(!id) {
+				id = href;
+			}
+			if(href && ~href.indexOf('.html')) {
+				//打开窗口的相关参数
+				var options = {
+					styles:{
+						popGesture: "close"
+					},
+					extras:{}
+				};
+				//非原生导航，需要设置顶部状态栏占位
+				options.styles.statusbar = {
+					background: "#f7f7f7"
+				}
+				//打开新窗口
+				mui.openWindow(href,id,options);
+			}
+		});
+
+		//进度百分比
+		var progressbar = mui('#percent');
+		mui(progressbar).progressbar().setProgress(50)
+		progressbar.on('tap', 'a', function() {
+			mui(progressbar).progressbar().setProgress(this.getAttribute('data-progress'));
+			var aLi = this.parentNode.parentNode.children;
+			for(var i = 0;i < aLi.length;i++){
+				aLi[i].setAttribute("class","");
+			}	
+			this.parentNode.setAttribute("class","mui-active");
+			var currVal = this.parentNode.getAttribute("data");
+			var showNa = ['请选择','跌 >3%','跌 1%-3%','跌 <1%','涨 <1%','涨 1%-3%','涨 >3%']
+			if(currVal > 3){
+				document.getElementById("userSel").setAttribute("style","color:#dd524d;font-weight:bold;");
+			}else{
+				document.getElementById("userSel").setAttribute("style","color:#2d863c;font-weight:bold;");
+			}
+			document.getElementById("userSel").innerHTML = showNa[currVal];
+		});
+	</script>
+</html>
