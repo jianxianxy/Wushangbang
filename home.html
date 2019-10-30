@@ -46,16 +46,47 @@
 								</a>
 							</li>
 						</ul>
+						
 						<ul class="mui-table-view mui-table-view-chevron">
-							<li class="mui-table-view-cell">
-								<h5>我的积分：100</h5>
-								<h5>我的关注：34</h5>
+							<li class="mui-table-view-cell mui-media">
+								<a class="mui-navigate-right">
+									<img class="mui-media-object mui-pull-left" src="images/jifen.jpg">
+									<div class="mui-media-body">
+										我的积分
+										<p class="mui-ellipsis">100</p>
+									</div>
+								</a>
+							</li>
+							<li class="mui-table-view-cell mui-media">
+								<a class="mui-navigate-right">
+									<img class="mui-media-object mui-pull-left" src="images/caijing.jpg">
+									<div class="mui-media-body">
+										财经榜
+										<p class="mui-ellipsis">第 12</p>
+									</div>
+								</a>
+							</li>
+							<li class="mui-table-view-cell mui-media">
+								<a class="mui-navigate-right" href="javascript:;">
+									<img class="mui-media-object mui-pull-left" src="images/jingzhun.jpg">
+									<div class="mui-media-body">
+										预测榜
+										<p class="mui-ellipsis">第 1</p>
+									</div>
+								</a>
 							</li>
 						</ul>
+						
 						<ul class="mui-table-view">
 							<li class="mui-table-view-cell" style="text-align: center;">
 								<a href="#Login">登录</a>
 							</li>
+						</ul>
+						
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell nav_ahref_view" style="text-align: center;">
+							    <selection href="register.html">注册</selection>	
+							</li>							
 						</ul>
 					</div>
 				</div>
@@ -161,7 +192,6 @@
 		});
 		//初始化单页的区域滚动
 		mui('.mui-scroll-wrapper').scroll();
-
 		
 		setTimeout(function () {
 			defaultImg();
